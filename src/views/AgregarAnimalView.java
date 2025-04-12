@@ -1,27 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package views;
 
 import domain.Carnivoro;
 import domain.Especie;
 import domain.Herbivoro;
 import domain.Sector;
+import domain.Pais;
 import domain.TipoAlimentacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.InvalidPropertiesFormatException;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author lvs_1
- */
 public class AgregarAnimalView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AgregarAnimalViewModel
-     */
     public AgregarAnimalView() {
         initComponents();
         agregarDatosComboBox();
@@ -41,28 +33,26 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         for (Sector sector : sectores) {
             cbSector.addItem(String.valueOf(sector.getNumero()));
         }
-        /* ArrayList<Pais> paises = Controlador.getPaises();
+        ArrayList<Pais> paises = Controlador.getPaises();
         for (Pais pais : paises) {
             cbPaisOrigen.addItem(pais.getNombre());
-        }*/
+        }
     }
 
     public void agregarBotones() {
         btnGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                TipoAlimentacion tipo = getEspecie().getTipoAlimentacion();
-                if (tipo == TipoAlimentacion.HERBIVORO) {
-                    /*Controlador.guardarAnimal(new Herbivoro(
-                                getEdad(), getPeso(), getEspecie(), getSector(), getValorFijo(), null
-                        ));*/
-                } else {
-                    /*Controlador.guardarAnimal(new Carnivoro(
-                                getEdad(), getPeso(), getEspecie(), getSector(), null
-                        ));*/
+                try {
+                    Controlador.guardarAnimalDesdeVista(
+                            getEdad(), getPeso(), getEspecie(), getSector(), getValorFijo(), getPais()
+                    );
+                } catch (InvalidPropertiesFormatException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al guardar animal: " + ex.getMessage());
                 }
             }
+
         }
         );
         btnVolver.addActionListener(new ActionListener() {
@@ -91,7 +81,6 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         return null;
     }
 
-    /*
     public Pais getPais() {
         String nombrePais = String.valueOf(cbPaisOrigen.getSelectedItem());
         for (Pais pais : Controlador.getPaises()) {
@@ -101,7 +90,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         }
         return null;
     }
-     */
+
     public Sector getSector() {
         int numeroSector = Integer.parseInt(cbSector.getSelectedItem().toString());
 
@@ -339,6 +328,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void cbEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEspecieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbEspecieActionPerformed
@@ -363,8 +353,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorFijoActionPerformed
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbEspecie;
@@ -383,5 +372,8 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtValorFijo;
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

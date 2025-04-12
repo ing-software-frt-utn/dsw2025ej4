@@ -8,10 +8,11 @@ public abstract class Mamifero {
     protected Especie especie;
     protected Sector sector;
     protected TipoAlimentacion tipoAlimentacion;
+    protected Pais pais;
 
 
     protected Mamifero(TipoAlimentacion tipoAlimentacion,
-                       int edad, double peso, Especie especie, Sector sector) throws IllegalArgumentException, InvalidPropertiesFormatException {
+                       int edad, double peso, Especie especie, Sector sector, Pais pais) throws IllegalArgumentException, InvalidPropertiesFormatException {
         if(especie == null) throw new IllegalArgumentException();
         if(sector == null) throw  new IllegalArgumentException();
         if(especie.getTipoAlimentacion() != tipoAlimentacion) throw new InvalidPropertiesFormatException("El animal no puede pertenecer a la especie");
@@ -31,6 +32,9 @@ public abstract class Mamifero {
 
     public double getPeso() {
         return peso;
+    }
+    public Pais getPais(){
+        return pais;
     }
 
     public Especie getEspecie() {
