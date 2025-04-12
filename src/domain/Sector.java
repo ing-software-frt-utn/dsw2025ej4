@@ -56,4 +56,17 @@ public class Sector {
     public String toString(){
         return String.format("Sector N°: %s [%s]", numero, tipoAlimentacion);
     }
+    
+    public int nombreSector()
+    {
+        return this.numero; 
+    }
+    
+    public void reducirLimite() {
+    if (limite > 0) {
+        limite--;
+    } else {
+        throw new IllegalStateException("El sector ya alcanzó su capacidad máxima.");
+    } 
+}
 }
