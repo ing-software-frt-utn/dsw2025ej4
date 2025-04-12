@@ -5,4 +5,4 @@
                 Nombre         |  Legajo | Cuenta
         -Nuñez Miguel Andres   |  58119  | MiguelAndres.Nunez@alu.frt.utn.edu.ar
         -Moran Joaquin Leandro |  58293  | joaquin.moran@alu.frt.utn.edu.ar
-        -Nieva Gabriel Agustin |  57792  | 
+        -Nieva Gabriel Agustin |  57792  | gabrielagustinnieva@gmail.com
