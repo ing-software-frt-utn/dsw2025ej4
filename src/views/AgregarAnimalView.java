@@ -4,7 +4,9 @@
  */
 package views;
 
+import domain.Carnivoro;
 import domain.Especie;
+import domain.Herbivoro;
 import domain.Sector;
 import domain.TipoAlimentacion;
 import java.awt.event.ActionEvent;
@@ -49,26 +51,37 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         btnGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
+                TipoAlimentacion tipo = getEspecie().getTipoAlimentacion();
+                if (tipo == TipoAlimentacion.HERBIVORO) {
+                    /*Controlador.guardarAnimal(new Herbivoro(
+                                getEdad(), getPeso(), getEspecie(), getSector(), getValorFijo(), null
+                        ));*/
+                } else {
+                    /*Controlador.guardarAnimal(new Carnivoro(
+                                getEdad(), getPeso(), getEspecie(), getSector(), null
+                        ));*/
+                }
             }
         }
         );
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              dispose();
+                dispose();
             }
         }
         );
         cbEspecie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              habilitarValorfijo();
+                habilitarValorfijo();
             }
         }
         );
     }
-        public Especie getEspecie() {
+
+    public Especie getEspecie() {
         String nombreEspecie = String.valueOf(cbEspecie.getSelectedItem());
         for (Especie especie : Controlador.getEspecies()) {
             if (nombreEspecie.equals(especie.getNombre())) {
@@ -77,7 +90,8 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         }
         return null;
     }
-/*
+
+    /*
     public Pais getPais() {
         String nombrePais = String.valueOf(cbPaisOrigen.getSelectedItem());
         for (Pais pais : Controlador.getPaises()) {
@@ -87,7 +101,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         }
         return null;
     }
-*/
+     */
     public Sector getSector() {
         int numeroSector = Integer.parseInt(cbSector.getSelectedItem().toString());
 
@@ -99,7 +113,6 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         return null;
     }
 
-  
     public double getValorFijo() {
         return Double.parseDouble(txtValorFijo.getText());
     }
@@ -112,7 +125,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         return Double.parseDouble(txtPeso.getText());
     }
 
-     public void habilitarValorfijo() {
+    public void habilitarValorfijo() {
         TipoAlimentacion tipo = getEspecie().getTipoAlimentacion();
         if (tipo == TipoAlimentacion.HERBIVORO) {
             txtValorFijo.setEnabled(true);
@@ -349,7 +362,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     private void txtValorFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorFijoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorFijoActionPerformed
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;

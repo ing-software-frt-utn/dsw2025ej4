@@ -32,6 +32,10 @@ public class Persistencia {
         animales.add(new Herbivoro(3, 1020,especies.get(1), sectores.get(0), 170));
         animales.add(new Herbivoro(8, 3800,especies.get(3), sectores.get(2), 320));
     }
+    
+    public static void agregarAnimal(Mamifero mamifero){
+        animales.add(mamifero);
+    }
 
     public static void inicializar() throws InvalidPropertiesFormatException{
         inicializarEspecies();
