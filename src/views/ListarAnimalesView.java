@@ -19,11 +19,13 @@ public class ListarAnimalesView extends javax.swing.JFrame {
     public ListarAnimalesView() {
         initComponents();
         listarAnimales();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
     private void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
         animalesGrid.setModel(new DefaultTableModel(new Object[][] {}, 
-            new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso" }));
+            new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso", "País" }));
         
         for(AnimalViewModel animal : animales){
             ((DefaultTableModel)animalesGrid.getModel()).addRow(new Object[] {
@@ -32,7 +34,8 @@ public class ListarAnimalesView extends javax.swing.JFrame {
                 animal.getPeso(),
                 animal.getSector(),
                 animal.getValorFijo() > 0 ? String.format("%.2f%n Kgs.", animal.getValorFijo()) : "-",
-                animal.getPorcentaje() > 0 ? String.format("%.2f %%", animal.getPorcentaje()*100) : "-"
+                animal.getPorcentaje() > 0 ? String.format("%.2f %%", animal.getPorcentaje()*100) : "-",
+                animal.getPais()
             });
         }
     }
