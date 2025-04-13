@@ -22,23 +22,39 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     }
 
     public void agregarDatosComboBox() {
+    cbEspecie.removeAllItems();
+    cbSector.removeAllItems();
+    cbPaisOrigen.removeAllItems();
         ArrayList<Especie> especies = Controlador.getEspecies();
-
-        for (Especie especie : especies) {
-            cbEspecie.addItem(especie.getNombre());
-        }
-
-        ArrayList<Sector> sectores = Controlador.getSectores();
-
-        for (Sector sector : sectores) {
-            cbSector.addItem(String.valueOf(sector.getNumero()));
-        }
-        ArrayList<Pais> paises = Controlador.getPaises();
-        for (Pais pais : paises) {
-            cbPaisOrigen.addItem(pais.getNombre());
-        }
+    for (Especie especie : especies) {
+        cbEspecie.addItem(especie.getNombre());
     }
 
+    ArrayList<Sector> sectores = habilitarSectores();
+    for (Sector sector : sectores) {
+        cbSector.addItem(String.valueOf(sector.getNumero()));
+    }
+
+    ArrayList<Pais> paises = Controlador.getPaises();
+    for (Pais pais : paises) {
+        cbPaisOrigen.addItem(pais.getNombre());
+    }
+    }
+    
+public void actualizarSectoresYPaises() {
+    cbSector.removeAllItems();
+    cbPaisOrigen.removeAllItems();
+
+    ArrayList<Sector> sectores = habilitarSectores();
+    for (Sector sector : sectores) {
+        cbSector.addItem(String.valueOf(sector.getNumero()));
+    }
+
+    ArrayList<Pais> paises = Controlador.getPaises();
+    for (Pais pais : paises) {
+        cbPaisOrigen.addItem(pais.getNombre());
+    }
+}
     public void agregarBotones() {
         btnGuardar.addActionListener(new ActionListener() {
             @Override
@@ -68,6 +84,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 habilitarValorfijo();
+                actualizarSectoresYPaises();
             }
         }
         );
@@ -125,6 +142,25 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         }
     }
 
+   public ArrayList<Sector> habilitarSectores() {
+    cbSector.removeAllItems();
+    Especie especieSeleccionada = getEspecie();
+
+    if (especieSeleccionada != null) {
+        ArrayList<Sector> sectores = Controlador.getSectores();
+        ArrayList<Sector> sectorFiltrado = new ArrayList<Sector> ();
+
+        for (Sector sector : sectores) {
+          if (sector.getTipoAlimentacion()==especieSeleccionada.getTipoAlimentacion()){
+             sectorFiltrado.add(sector);
+              
+            }
+        }
+         return sectorFiltrado;
+    }
+       return null;
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -374,6 +410,10 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtValorFijo;
+
+    private void habilitarSetores() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
