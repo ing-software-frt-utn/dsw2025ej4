@@ -19,6 +19,8 @@ public class ListarAnimalesView extends javax.swing.JFrame {
     public ListarAnimalesView() {
         initComponents();
         listarAnimales();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
     private void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
