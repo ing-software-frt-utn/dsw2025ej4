@@ -5,7 +5,6 @@ import domain.*;
 
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
-import java.util.List;
 
 public class Controlador {
     public static TipoAlimentacion[] getTiposAlimentacion(){
@@ -30,5 +29,14 @@ public class Controlador {
         double totalCarnivoros = Persistencia.getTotalComida(TipoAlimentacion.CARNIVORO);
         double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
+    }
+    
+    public static ArrayList<Pais> getPaises(){
+        return Persistencia.getPaises();
+    }
+    
+    public static String agregarAnimal(int edad, double peso, Especie esp, Pais pai) throws InvalidPropertiesFormatException{
+        Persistencia.addAnimal(edad, peso, esp, pai);
+        return "Listo";
     }
 }
