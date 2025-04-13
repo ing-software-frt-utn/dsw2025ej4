@@ -120,7 +120,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        
+        AltaAnimal vista = new AltaAnimal();
+        vista.setVisible(true);
     }//GEN-LAST:event_agregarActionPerformed
 
     private void listAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listAActionPerformed
