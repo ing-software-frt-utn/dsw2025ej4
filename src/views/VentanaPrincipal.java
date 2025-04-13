@@ -80,7 +80,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         ListarAnimalesView lista = new ListarAnimalesView();
-        view.setVisible(true);
+        lista.setVisible(true);
     }//GEN-LAST:event_btnListarActionPerformed
 
 
