@@ -12,4 +12,9 @@ public enum TipoAlimentacion {
     public boolean esHerbivoro(){
         return this == HERBIVORO;
     }
+
+      public boolean esOmnivoro() {
+        return this == OMNIVORO;
+    }
+
 }
