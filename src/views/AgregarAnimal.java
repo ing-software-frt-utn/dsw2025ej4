@@ -107,6 +107,11 @@ public class AgregarAnimal extends javax.swing.JFrame {
         });
 
         sectorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Especie--" }));
+        sectorComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sectorComboBoxItemStateChanged(evt);
+            }
+        });
         sectorComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sectorComboBoxActionPerformed(evt);
@@ -132,6 +137,11 @@ public class AgregarAnimal extends javax.swing.JFrame {
         jLabel8.setText("Pais:");
 
         paisComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Especie--" }));
+        paisComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                paisComboBoxItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,16 +244,24 @@ public class AgregarAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_especieComboBoxActionPerformed
 
     private void especieComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_especieComboBoxItemStateChanged
-       // cargarSectores();
+      especieComboBox.removeItem(1);
     }//GEN-LAST:event_especieComboBoxItemStateChanged
 
     private void especieComboBoxMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_especieComboBoxMouseMoved
-    //   cargarSectores();
+
     }//GEN-LAST:event_especieComboBoxMouseMoved
 
     private void sectorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorComboBoxActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_sectorComboBoxActionPerformed
+
+    private void sectorComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sectorComboBoxItemStateChanged
+
+    }//GEN-LAST:event_sectorComboBoxItemStateChanged
+
+    private void paisComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_paisComboBoxItemStateChanged
+
+    }//GEN-LAST:event_paisComboBoxItemStateChanged
 
     
 
@@ -278,7 +296,7 @@ public class AgregarAnimal extends javax.swing.JFrame {
         }
      
      }
-     if (!espacio) {
+     if (!espacio && !especieComboBox.getSelectedItem().toString().equals("--Seleccione Especie --")) {
     JOptionPane.showMessageDialog(this, "Error: todos los sectores están ocupados");
     dispose();
     }
