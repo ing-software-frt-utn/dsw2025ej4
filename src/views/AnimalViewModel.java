@@ -14,6 +14,7 @@ public class AnimalViewModel{
     private double peso;
     private double valorFijo;
     private double porcentaje;
+    private String pais;
 
     public AnimalViewModel(Mamifero animal) {
         if(animal == null) return;
@@ -23,6 +24,7 @@ public class AnimalViewModel{
         peso = animal.getPeso();
         valorFijo = animal instanceof Herbivoro ? ((Herbivoro) animal).getValorFijo() : 0;
         porcentaje = animal instanceof Carnivoro ? animal.getEspecie().getPorcentajePesoCarnivoro() : 0;
+        pais = animal.getPais().getNombre();
     }
 
     public String getEspecie() {
@@ -47,5 +49,10 @@ public class AnimalViewModel{
     
     public double getPorcentaje(){
         return porcentaje;
+    }
+    
+    public String getPais()
+    {
+        return pais;
     }
 }
