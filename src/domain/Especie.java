@@ -3,9 +3,8 @@ package domain;
 public class Especie {
     private String nombre;
     private double porcentajePesoCarnivoro;
-
     private TipoAlimentacion tipoAlimentacion;
-
+    
     public Especie(String nombre, TipoAlimentacion tipoAlimentacion, double porcentajePesoCarnivoro) {
         this.nombre = nombre;
         if(tipoAlimentacion.esCarnivoro()){
