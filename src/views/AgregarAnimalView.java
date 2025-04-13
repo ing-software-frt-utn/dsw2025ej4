@@ -55,6 +55,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
 
         }
         );
+        
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
             }
         }
         );
+        
         cbEspecie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
