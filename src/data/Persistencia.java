@@ -30,6 +30,12 @@ public class Persistencia {
     private static void inicializarAnimales() throws InvalidPropertiesFormatException {
         
     }
+    private static void inicializarPaises() {
+        paises.add(new Pais("India","IND"));
+        paises.add(new Pais("Sudafrica", "ZAF"));
+        paises.add(new Pais("Kenia","KEN"));
+        paises.add(new Pais("Thailandia","THA"));
+    }
     
     public static void agregarAnimal(Mamifero mamifero){
         animales.add(mamifero);
@@ -39,6 +45,7 @@ public class Persistencia {
         inicializarEspecies();
         inicializarSectores();
         inicializarAnimales();
+        inicializarPaises();
     }
 
     public static ArrayList<Mamifero> getAnimales() {
@@ -63,4 +70,6 @@ public class Persistencia {
         }
         return total;
     }
+
+   
 }
