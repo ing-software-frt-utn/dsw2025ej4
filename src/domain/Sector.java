@@ -34,6 +34,10 @@ public class Sector {
     public int getNumero() {
         return numero;
     }
+    
+    public ArrayList<Mamifero> getAnimales(){
+        return animales;
+    }
 
     public double getLatitud() {
         return latitud;
