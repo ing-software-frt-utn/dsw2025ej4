@@ -1,6 +1,5 @@
 package domain;
 
-
 public class Pais {
     private final String nombre;
     private final String codigoIso;
@@ -17,5 +16,4 @@ public class Pais {
     public String getCodigoIso() {
         return codigoIso;
     }
-
 }
