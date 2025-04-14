@@ -1,18 +1,19 @@
+package domain;
 
 public class Pais {
-    private String nombre;
-    private String codigoISO;
+    private final String nombre;
+    private final String codigoIso;
 
-    public Pais(String nombre, String codigoISO) {
+    public Pais(String nombre, String codigoIso) {
         this.nombre = nombre;
-        this.codigoISO = codigoISO;
+        this.codigoIso = codigoIso;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getCodigoISO() {
-        return codigoISO;
+    public String getCodigoIso() {
+        return codigoIso;
     }
 }
