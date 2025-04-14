@@ -3,11 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-<<<<<<< HEAD
-            <name>DSWEJ1-tp4</name>
-=======
             <name>DSWEJ1(tp4)</name>
->>>>>>> 51d6a8d10fa915e5396704613d33a5bbd5da280a
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

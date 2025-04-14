@@ -202,14 +202,28 @@ public class Agregaranimales extends javax.swing.JFrame {
     }//GEN-LAST:event_valortxtActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-       
+        Controlador.volver(this);
         // TODO add your handling code here:
     }//GEN-LAST:event_volverActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         
-      
-        
+        if (tipotxt.getSelectedItem().toString().equals(TipoAlimentacion.HERBIVORO.toString())) {
+            try {
+                Controlador.guardarAnimal(new Herbivoro(
+                        this.getEdadtxt(), this.getPesotxt(), this.getEspecietxt(), this.getSectortxt(), this.getValortxt(), this.getPaistxt()
+                ));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        else if(tipotxt.getSelectedItem().toString().equals(TipoAlimentacion.CARNIVORO.toString())){
+            try{
+                Controlador.guardarAnimal(new Carnivoro(this.getEdadtxt(), this.getPesotxt(), this.getEspecietxt(), this.getSectortxt(), this.getPaistxt()));   
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
 
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -243,10 +257,6 @@ public class Agregaranimales extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregaranimales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -340,10 +350,17 @@ public class Agregaranimales extends javax.swing.JFrame {
         return null;
     }
 
-   
+    public Pais getPaistxt() {
+        ArrayList<Pais> paises = Controlador.getPaises();
+        for (Pais pais : paises) {
+            if (pais.getNombre().equals(paistxt.getSelectedItem().toString())) {
+                return pais;
+            }
+        }
         
-       
-    
+        return null;
+    }
+
     
     public void setSectortxt(javax.swing.JComboBox<String> sectortxt) {
         this.sectortxt = sectortxt;
@@ -382,7 +399,11 @@ public class Agregaranimales extends javax.swing.JFrame {
         }
 
         
-        
+        paistxt.removeAllItems();
+        ArrayList<Pais> paises = Controlador.getPaises();
+        for (Pais pais : paises) {
+            paistxt.addItem(pais.getNombre());
+        }
 
         
         tipotxt.removeAllItems();

@@ -1,5 +1,4 @@
- 
-   package views;
+package views;
 
 import data.Persistencia;
 import domain.*;
@@ -11,11 +10,41 @@ import javax.swing.JOptionPane;
 
 public class Controlador {
     public static Agregaranimales agregaranimales;
-  
+    public static Menuanimales menuanimales;
     
-   
+    public static void guardarAnimal(Mamifero mamifero){
+        Persistencia.agregarAnimal(mamifero);
+    }
     
+     public static void salir(Menuanimales vista){
+        vista.dispose();
+    }
     
+    public static void volver (Agregaranimales vista){
+        vista.dispose();
+        new Menuanimales().setVisible(true);
+        
+    }
+    
+    public static void volveer (ListarAnimalesView vista){
+        vista.dispose();
+        new Menuanimales().setVisible(true);
+        
+    }
+    
+    public static void vistaagregar (Menuanimales vista){
+        vista.dispose();
+        new Agregaranimales().setVisible(true);
+    }
+    
+    public static void vistalista (Menuanimales vista){
+        vista.dispose();
+        new ListarAnimalesView().setVisible(true);
+    }
+    
+    public static ArrayList<Pais> getPaises(){
+        return Persistencia.getPaises();
+    }
   
     public static TipoAlimentacion[] getTiposAlimentacion(){
         return  TipoAlimentacion.values();
@@ -36,7 +65,9 @@ public class Controlador {
     }
     
     
-  
+   public static void agregarAnimal (Mamifero mamifero){
+       Persistencia.agregarAnimal(mamifero);
+   }
     
   /*  public static void cargarTabla(ListarAnimalesView vista) {
         //reconfigura el modelo que se aplica en la JTabla
@@ -78,5 +109,3 @@ public class Controlador {
     
     
 }
-
- 
