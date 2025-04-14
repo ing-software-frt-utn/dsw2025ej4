@@ -1,3 +1,4 @@
+
 package views;
 
 import domain.Carnivoro;
@@ -50,4 +51,3 @@ public class AnimalViewModel{
  
     
 }
-
