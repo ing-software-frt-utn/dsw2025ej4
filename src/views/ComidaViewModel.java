@@ -21,3 +21,4 @@ public class ComidaViewModel {
         return herbivoros;
     }
 }
+
