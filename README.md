@@ -1,2 +1,6 @@
-# dsw2025ej4
-Desarrollo de Software - Ejercicio N° 4
+# Desarrollo de Software 
+Ejercicio N° 4
+
+57981 - Raul Nicolas Bazan + NicBazan + Raul.Bazan@alu.frt.utn.edu.ar; 
+58200 - Gabriel Moeykens + GabrielMoeykens + moeykens.gabriel@gmail.com
+58209 - Mauro Nicolas Avila + nico-avila + mauronicolasavila@hotmail.com
