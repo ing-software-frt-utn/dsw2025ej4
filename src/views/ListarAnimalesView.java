@@ -1,21 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package views;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author franc
- */
+
 public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceLista{
 
-    /**
-     * Creates new form ListarAnimalesView
-     */
+  
     public ListarAnimalesView() {
         initComponents();
        
@@ -28,13 +19,42 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
         dispose();
     }
     
+     public void setListaConfig(ArrayList<Object[]> lista){
+        DefaultTableModel model = (DefaultTableModel) grillita.getModel();
+        model.setRowCount(0);
+       
+       for (Object[] fila : lista){
+           model.addRow(fila);
+       } 
+    } 
+    
+    public void setLista(ArrayList <AnimalViewModel> listaf){
+        
+        DefaultTableModel model = (DefaultTableModel) grillita.getModel();
+        model.setRowCount(0);
+        
+        for(AnimalViewModel lista : listaf){
+            Object[] fila ={
+                lista.getEspecie(),
+                lista.getEdad(),
+                lista.getPeso(),
+                lista.getSector(),
+                lista.getValorFijo(),
+                lista.getPorcentaje() , };
+
+            model.addRow(fila);
+            }
+        } 
+        
+    
+            
     public void setControlador(controlador.Controlador c){
     calcularComida.setActionCommand(BTN_MOSTRAR);
     calcularComida.addActionListener(c);
     btnVolver.setActionCommand(BTN_VOLVER);
     btnVolver.addActionListener(c);
 }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +65,7 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        animalesGrid = new javax.swing.JTable();
+        grillita = new javax.swing.JTable();
         calcularComida = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
         totalHerbivoros = new javax.swing.JLabel();
@@ -55,24 +75,21 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Zoológico - Listar Animales");
+        setTitle("ZoolÃ³gico - Listar Animales");
         setPreferredSize(new java.awt.Dimension(640, 480));
         setSize(new java.awt.Dimension(640, 480));
 
-        animalesGrid.setModel(new javax.swing.table.DefaultTableModel(
+        grillita.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Porcentaje Peso"
             }
         ));
-        jScrollPane1.setViewportView(animalesGrid);
+        jScrollPane1.setViewportView(grillita);
 
-        calcularComida.setText("Calcular Comida");
+        calcularComida.setText("MostrarAnimales");
         calcularComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcularComidaActionPerformed(evt);
@@ -82,10 +99,10 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
         panel.setBackground(new java.awt.Color(255, 204, 204));
 
         totalHerbivoros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        totalHerbivoros.setText("Total Herbívoros");
+        totalHerbivoros.setText("Total HerbÃ­voros");
 
         totalCarnivoros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        totalCarnivoros.setText("Total Carnívoros");
+        totalCarnivoros.setText("Total CarnÃ­voros");
 
         totalLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,9 +159,9 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calcularComida, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(calcularComida, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -205,11 +222,12 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
             }
         });
     }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable animalesGrid;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton calcularComida;
+    private javax.swing.JTable grillita;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
     private javax.swing.JLabel totalAlimentos;
@@ -217,5 +235,5 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
     private javax.swing.JLabel totalHerbivoros;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
-
 }
+
