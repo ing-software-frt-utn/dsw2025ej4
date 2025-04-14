@@ -32,6 +32,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
 
     ArrayList<Sector> sectores = habilitarSectores();
     for (Sector sector : sectores) {
+        
         cbSector.addItem(String.valueOf(sector.getNumero()));
     }
 
@@ -41,7 +42,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     }
     }
     
-public void actualizarSectoresYPaises() {
+    public void actualizarSectoresYPaises() {
     cbSector.removeAllItems();
     cbPaisOrigen.removeAllItems();
 
@@ -122,8 +123,12 @@ public void actualizarSectoresYPaises() {
     }
 
     public double getValorFijo() {
-        return Double.parseDouble(txtValorFijo.getText());
-    }
+        String texto = txtValorFijo.getText().trim();
+        if (!texto.isEmpty()) {
+            return Double.parseDouble(texto);
+        }
+    return 0;
+}
 
     public int getEdad() {
         return Integer.parseInt(txtEdad.getText());
@@ -151,7 +156,8 @@ public void actualizarSectoresYPaises() {
         ArrayList<Sector> sectorFiltrado = new ArrayList<Sector> ();
 
         for (Sector sector : sectores) {
-          if (sector.getTipoAlimentacion()==especieSeleccionada.getTipoAlimentacion()){
+          if (sector.getTipoAlimentacion()==especieSeleccionada.getTipoAlimentacion() 
+                  && sector.getAnimales().size()<sector.getLimite()){
              sectorFiltrado.add(sector);
               
             }
@@ -160,6 +166,8 @@ public void actualizarSectoresYPaises() {
     }
        return null;
 }
+   
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -22,7 +22,7 @@ public class Persistencia {
         Empleado raul = new Empleado("Raul A", "20111222", "Tucumán" );
         Empleado maria = new Empleado("Maria B", "30111222", "Tucumán" );
         sectores.add(new Sector(1, -26.250724, -65.522827, 10, TipoAlimentacion.HERBIVORO, raul));
-        sectores.add(new Sector(2, -26.252359, -65.521511, 10, TipoAlimentacion.CARNIVORO, maria));
+        sectores.add(new Sector(2, -26.252359, -65.521511, 2, TipoAlimentacion.CARNIVORO, maria));
         sectores.add(new Sector(3, -26.254661, -65.522726, 10, TipoAlimentacion.HERBIVORO, maria));
         sectores.add(new Sector(4, -26.257250, -65.523514, 10, TipoAlimentacion.CARNIVORO, raul));
     }
