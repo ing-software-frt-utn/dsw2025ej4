@@ -1,8 +1,6 @@
 package views;
 
-import domain.Carnivoro;
 import domain.Especie;
-import domain.Herbivoro;
 import domain.Sector;
 import domain.Pais;
 import domain.TipoAlimentacion;
@@ -71,6 +69,10 @@ public class AgregarAnimalView extends javax.swing.JFrame {
                         
                     );
                         actualizarCampos();
+                        JOptionPane.showMessageDialog(null, 
+                        "El animal " + getEspecie().getNombre() + " se guardó correctamente.", 
+                        "Animal guardado", 
+                        JOptionPane.INFORMATION_MESSAGE);
                  }
                     
                 } catch (InvalidPropertiesFormatException ex) {
