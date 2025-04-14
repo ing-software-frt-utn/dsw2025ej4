@@ -52,4 +52,13 @@ public class AnimalViewModel{
     public double getPorcentaje(){
         return porcentaje;
     }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public String getCodigopostal() {
+        return codigopostal;
+    }
+    
 }
