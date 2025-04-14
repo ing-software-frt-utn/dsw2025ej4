@@ -8,6 +8,7 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 
 public class Controlador {
+    
     public static TipoAlimentacion[] getTiposAlimentacion(){
         return  TipoAlimentacion.values();
     }
