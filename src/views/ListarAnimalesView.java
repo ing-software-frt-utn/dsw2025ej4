@@ -19,11 +19,13 @@ public class ListarAnimalesView extends javax.swing.JFrame {
     public ListarAnimalesView() {
         initComponents();
         listarAnimales();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
     private void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
         animalesGrid.setModel(new DefaultTableModel(new Object[][] {}, 
-            new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso" }));
+            new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso", "País" }));
         
         for(AnimalViewModel animal : animales){
             ((DefaultTableModel)animalesGrid.getModel()).addRow(new Object[] {
@@ -32,7 +34,8 @@ public class ListarAnimalesView extends javax.swing.JFrame {
                 animal.getPeso(),
                 animal.getSector(),
                 animal.getValorFijo() > 0 ? String.format("%.2f%n Kgs.", animal.getValorFijo()) : "-",
-                animal.getPorcentaje() > 0 ? String.format("%.2f %%", animal.getPorcentaje()*100) : "-"
+                animal.getPorcentaje() > 0 ? String.format("%.2f %%", animal.getPorcentaje()*100) : "-",
+                animal.getPais()
             });
         }
     }
@@ -54,10 +57,10 @@ public class ListarAnimalesView extends javax.swing.JFrame {
         totalCarnivoros = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
         totalAlimentos = new javax.swing.JLabel();
+        volverButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Zoológico - Listar Animales");
-        setPreferredSize(new java.awt.Dimension(640, 480));
         setSize(new java.awt.Dimension(640, 480));
 
         animalesGrid.setModel(new javax.swing.table.DefaultTableModel(
@@ -130,6 +133,13 @@ public class ListarAnimalesView extends javax.swing.JFrame {
                 .addComponent(totalAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        volverButton.setText("volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +149,9 @@ public class ListarAnimalesView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(calcularComida, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(calcularComida, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(volverButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -149,13 +161,15 @@ public class ListarAnimalesView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(calcularComida, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -167,6 +181,12 @@ public class ListarAnimalesView extends javax.swing.JFrame {
          totalCarnivoros.setText(String.format("Total Carnívoros: %.2f%n Kgs.", comida.getCarnivoros()));
          totalAlimentos.setText(String.format("%.2f%n Kgs.", comida.getTotal()));
     }//GEN-LAST:event_calcularComidaActionPerformed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+       dispose();
+       MenuPrincipal menu = new MenuPrincipal();
+       menu.setVisible(true);
+    }//GEN-LAST:event_volverButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +232,7 @@ public class ListarAnimalesView extends javax.swing.JFrame {
     private javax.swing.JLabel totalCarnivoros;
     private javax.swing.JLabel totalHerbivoros;
     private javax.swing.JLabel totalLabel;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 
 }
