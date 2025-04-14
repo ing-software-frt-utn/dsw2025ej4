@@ -9,3 +9,4 @@ public interface InterfacePrincipal {
     public void salir();
     public void setControlador(controlador.Controlador c);
 }
+
