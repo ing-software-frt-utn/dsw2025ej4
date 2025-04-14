@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package views;
 
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author userr
- */
 public class MenuPrincipal extends javax.swing.JFrame implements InterfacePrincipal{
 
   
@@ -149,3 +141,4 @@ public class MenuPrincipal extends javax.swing.JFrame implements InterfacePrinci
     private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables
 }
+
