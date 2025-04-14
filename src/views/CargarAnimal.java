@@ -5,10 +5,50 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import domain.*;
 import java.awt.event.ActionEvent;
+import views.InterfaceCargar;
+import views.InterfaceCargar;
 
 
 public class CargarAnimal extends javax.swing.JFrame implements InterfaceCargar{
 
+    public Mamifero crearMamifero() {
+    try {
+        int edad = Integer.parseInt(campoEdad.getText());
+        double peso = Double.parseDouble(campoPeso.getText());
+
+        String nombreEspecie = (String) especies.getSelectedItem();
+        Especie especieSeleccionada = Persistencia.getEspecies().stream()
+                .filter(e -> e.getNombre().equals(nombreEspecie))
+                .findFirst().orElse(null);
+
+        int numeroSector = (int) sectores.getSelectedItem();
+        Sector sectorSeleccionado = Persistencia.getSectores().stream()
+                .filter(s -> s.getNumero() == numeroSector)
+                .findFirst().orElse(null);
+
+        Pais paisSeleccionado = new Pais("SIN DEFINIR", "000");
+
+        if (especieSeleccionada == null || sectorSeleccionado == null /*|| paisSeleccionado == null*/) {
+            throw new IllegalArgumentException("No se han seleccionado correctamente especie o sector.");
+        }
+
+        if (especieSeleccionada.getTipoAlimentacion() == TipoAlimentacion.CARNIVORO) {
+            return new Carnivoro(edad, peso, especieSeleccionada, sectorSeleccionado, paisSeleccionado);
+        } else {
+            double valorFijo = Double.parseDouble(campoValorFijo.getText());
+            return new Herbivoro(edad, peso, especieSeleccionada, sectorSeleccionado, valorFijo, paisSeleccionado);
+        }
+    } catch (NumberFormatException nfe) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Campos numÃ©ricos invÃ¡lidos: " + nfe.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error al crear el mamÃ­fero: " + ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    return null;
+}
+
+
+    
+    
     
     public CargarAnimal() {
         initComponents();
@@ -16,28 +56,33 @@ public class CargarAnimal extends javax.swing.JFrame implements InterfaceCargar{
     }
     
     public void ejecutar(){
-        setVisible(true);
-    }
+   
+    cargarEspecies(Persistencia.getEspecies());
+    cargarPais(Persistencia.getPaises());
+    cargarSector(Persistencia.getSectores());
+    setVisible(true);
+}
+
     
     public void volver(){
         dispose(); 
     }
     
     public void cargarEspecies(ArrayList<Especie> lista){
-      
+        especies.removeAllItems(); 
         for(Especie e : lista){
             especies.addItem(e.getNombre());
         }
     }
     public void cargarSector(ArrayList<Sector> lista) {
-        
+        sectores.removeAllItems(); 
         for (Sector s : lista) {
             sectores.addItem(s.getNumero());
         }
     }
 
     public void cargarPais(ArrayList<Pais> lista) {
-      
+       paises.removeAllItems(); 
         for (Pais p : lista) {
             paises.addItem(p.getNombre());
         }
@@ -53,7 +98,7 @@ public class CargarAnimal extends javax.swing.JFrame implements InterfaceCargar{
         }
     }
     
-     private void inicializarEventos() {
+     public void inicializarEventos() {
         alimentacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +123,8 @@ public class CargarAnimal extends javax.swing.JFrame implements InterfaceCargar{
         btnAgregar.setActionCommand(BTN_CARGAR);
         btnAgregar.addActionListener(c);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,7 +178,7 @@ public class CargarAnimal extends javax.swing.JFrame implements InterfaceCargar{
 
         alimentacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Herbivoro", "Carnivoro" }));
 
-        jLabel8.setText("Años");
+        jLabel8.setText("AÃ±os");
 
         jLabel9.setText("Kg");
 
@@ -332,3 +379,4 @@ public class CargarAnimal extends javax.swing.JFrame implements InterfaceCargar{
     private javax.swing.JComboBox sectores;
     // End of variables declaration//GEN-END:variables
 }
+
