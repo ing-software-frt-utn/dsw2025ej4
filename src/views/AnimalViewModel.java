@@ -48,4 +48,6 @@ public class AnimalViewModel{
     public double getPorcentaje(){
         return porcentaje;
     }
+ 
+    
 }
