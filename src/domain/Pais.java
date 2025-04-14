@@ -1,8 +1,8 @@
-
+//Agregando la clase Pais
 package domain;
 
 
-public class Pais {
+public class Pais{
     private final String nombre;
     private final String codigoIso;
 
@@ -11,17 +11,19 @@ public class Pais {
         this.codigoIso = codigoIso;
     }
 
+    
     public String getNombre() {
         return nombre;
     }
 
+    
     public String getCodigoIso() {
         return codigoIso;
     }
 
+    
     @Override
     public String toString() {
         return nombre;
-    }
-    
+    }    
 }
