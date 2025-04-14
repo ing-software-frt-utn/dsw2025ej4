@@ -1,4 +1,3 @@
-
 package views;
 
 import domain.Carnivoro;
@@ -48,4 +47,7 @@ public class AnimalViewModel{
     public double getPorcentaje(){
         return porcentaje;
     }
+ 
+    
 }
+
