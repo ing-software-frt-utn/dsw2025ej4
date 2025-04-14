@@ -1,24 +1,36 @@
 package controlador;
-
-import domain.*;
-import data.Persistencia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
-//import java.awt.event.ActionListener;
+import java.util.List;
+import domain.*;
 import views.*;
+import data.Persistencia;
+import java.util.InvalidPropertiesFormatException;
 
 public class Controlador implements ActionListener{
     private MenuPrincipal pantallaPrincipal;
     private CargarAnimal pantallaCargarAnimal;
     private ListarAnimalesView pantallaLista;
+    
+    private List<AnimalViewModel> lista;
 
     public Controlador() {
         pantallaPrincipal = new MenuPrincipal();
         pantallaCargarAnimal = new CargarAnimal();
         pantallaLista = new ListarAnimalesView();
+        lista = new ArrayList<>();
+        cargarDatos();
         
+    }
+    
+   public void cargarDatos(){
+        try {
+            Persistencia.inicializar();
+            lista = obtenerDatosAnimales();
+        } catch (InvalidPropertiesFormatException e) {
+            e.printStackTrace();
+        }
     }
     
     public void ejecutar(){
@@ -31,27 +43,11 @@ public class Controlador implements ActionListener{
     public void actionPerformed(ActionEvent e){
         System.out.println("Se produjo un evento [" + e.getActionCommand()+ "]");
         if(e.getActionCommand().equals(pantallaPrincipal.OPC_CARGAR)){
-    try {
-        Persistencia.inicializar(); // Asegura que las listas estén cargadas
-    } catch (InvalidPropertiesFormatException ex) {
-        ex.printStackTrace();
-    }
-
-    // Obtener las listas desde Persistencia
-    ArrayList<Especie> listaEspecies = Persistencia.getEspecies();
-    ArrayList<Pais> listaPaises = Persistencia.getPaises();
-    ArrayList<Sector> listaSectores = Persistencia.getSectores();
-
-    // Cargar en la vista
-    pantallaCargarAnimal.cargarEspecies(listaEspecies);
-    pantallaCargarAnimal.cargarPais(listaPaises);
-    pantallaCargarAnimal.cargarSector(listaSectores);
-
-    // Mostrar pantalla
-    pantallaCargarAnimal.ejecutar();
-    pantallaPrincipal.salir();
-}
+            pantallaCargarAnimal.ejecutar();
+            pantallaPrincipal.salir();
+        }
         if(e.getActionCommand().equals(pantallaPrincipal.OPC_LISTAR)){
+            pantallaLista.setLista((ArrayList<AnimalViewModel>) lista);
             pantallaLista.ejecutar();
             pantallaPrincipal.salir();
         }
@@ -62,14 +58,32 @@ public class Controlador implements ActionListener{
             pantallaCargarAnimal.volver();
             pantallaPrincipal.ejecutar();
         }
-        if(e.getActionCommand().equals(pantallaCargarAnimal.BTN_CARGAR)){
-            
-        }
         if(e.getActionCommand().equals(pantallaLista.BTN_VOLVER)){
             pantallaLista.volver();
             pantallaPrincipal.ejecutar();
         }
-        
+        if(e.getActionCommand().equals(pantallaLista.BTN_MOSTRAR)){
+            pantallaLista.setLista((ArrayList<AnimalViewModel>) lista);
+        }
+        if(e.getActionCommand().equals(pantallaCargarAnimal.BTN_CARGAR)){
+     Mamifero nuevo = pantallaCargarAnimal.crearMamifero();
+     if(nuevo != null){
+        Persistencia.getAnimales().add(nuevo);
+        lista.add(new AnimalViewModel(nuevo));
     }
 }
- 
+
+}
+
+
+    
+    private ArrayList<AnimalViewModel> obtenerDatosAnimales() {
+        ArrayList<AnimalViewModel> animalesViewModel = new ArrayList<>();
+        for (Mamifero animal : Persistencia.getAnimales()) {
+            animalesViewModel.add(new AnimalViewModel(animal));
+        }
+        return animalesViewModel;
+    }
+
+   
+}
