@@ -75,7 +75,7 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ZoolÃ³gico - Listar Animales");
+        setTitle("Zoologico - Listar Animales");
         setPreferredSize(new java.awt.Dimension(640, 480));
         setSize(new java.awt.Dimension(640, 480));
 
@@ -99,10 +99,10 @@ public class ListarAnimalesView extends javax.swing.JFrame implements InterfaceL
         panel.setBackground(new java.awt.Color(255, 204, 204));
 
         totalHerbivoros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        totalHerbivoros.setText("Total HerbÃ­voros");
+        totalHerbivoros.setText("Total Herbivoros");
 
         totalCarnivoros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        totalCarnivoros.setText("Total CarnÃ­voros");
+        totalCarnivoros.setText("Total Carnivoros");
 
         totalLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
