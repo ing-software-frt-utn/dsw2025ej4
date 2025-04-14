@@ -2,8 +2,7 @@ package domain;
 
 public enum TipoAlimentacion {
     CARNIVORO,
-    HERBIVORO,
-    OMNIVORO;
+    HERBIVORO;
 
     public boolean esCarnivoro () {
         return this == CARNIVORO;
