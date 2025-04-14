@@ -13,7 +13,6 @@ import java.util.InvalidPropertiesFormatException;
 import javax.swing.JOptionPane;
 
 public class AgregarAnimalView extends javax.swing.JFrame {
-
     public AgregarAnimalView() {
         initComponents();
         agregarDatosComboBox();
@@ -61,9 +60,19 @@ public class AgregarAnimalView extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Controlador.guardarAnimalDesdeVista(
+                    if(camposVacios()){
+                        JOptionPane.showMessageDialog(null, 
+                        "Por favor, verifique los campos vacíos.", 
+                        "Campos incompletos", 
+                        JOptionPane.WARNING_MESSAGE);
+                    } else{
+                        Controlador.guardarAnimalDesdeVista(
                             getEdad(), getPeso(), getEspecie(), getSector(), getValorFijo(), getPais()
+                        
                     );
+                        actualizarCampos();
+                 }
+                    
                 } catch (InvalidPropertiesFormatException ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error al guardar animal: " + ex.getMessage());
@@ -126,16 +135,24 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         String texto = txtValorFijo.getText().trim();
         if (!texto.isEmpty()) {
             return Double.parseDouble(texto);
-        }
+        } 
     return 0;
 }
 
     public int getEdad() {
-        return Integer.parseInt(txtEdad.getText());
+        String texto = txtEdad.getText().trim();
+        if (!texto.isEmpty()) {
+            return Integer.parseInt(texto);
+        } 
+        return 0;
     }
 
     public double getPeso() {
-        return Double.parseDouble(txtPeso.getText());
+        String texto = txtPeso.getText().trim();
+        if (!texto.isEmpty()) {
+            return Double.parseDouble(texto);
+        }
+        return 0;
     }
 
     public void habilitarValorfijo() {
@@ -167,8 +184,21 @@ public class AgregarAnimalView extends javax.swing.JFrame {
        return null;
 }
    
-   
+   public boolean camposVacios(){
+       Especie especie = getEspecie();
+       if(especie.getTipoAlimentacion()==TipoAlimentacion.HERBIVORO && getValorFijo()==0 
+               || getPeso()==0 || getEdad()==0){
+           return true;
+       }
+       return false;
+   }
     
+   public void actualizarCampos(){
+       actualizarSectoresYPaises();
+       txtPeso.setText("");
+       txtEdad.setText("");
+       txtValorFijo.setText("");
+   }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -191,16 +221,22 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         cbPaisOrigen = new javax.swing.JComboBox<>();
         btnVolver = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("El zoológico >> Agregar animal");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar animal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SimSun", 0, 24))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(242, 253, 242));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar animal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 1, 24), new java.awt.Color(0, 153, 0))); // NOI18N
         jPanel1.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 0));
         jLabel2.setText("Seleccione especie :");
         jLabel2.setToolTipText("");
 
+        cbEspecie.setForeground(new java.awt.Color(0, 153, 0));
         cbEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEspecieActionPerformed(evt);
@@ -208,6 +244,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 0));
         jLabel3.setText("Sector");
 
         cbSector.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +254,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 0));
         jLabel5.setText("Valor fijo:");
         jLabel5.setToolTipText("");
 
@@ -233,22 +271,28 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 153, 0));
         jLabel7.setText("Edad");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 153, 0));
         jLabel8.setText("Peso");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 153, 0));
         jLabel9.setText("Año/s");
         jLabel9.setToolTipText("");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 0));
         jLabel10.setText("Pais Origen:");
         jLabel10.setToolTipText("");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 153, 0));
         jLabel11.setText("kg");
 
+        btnVolver.setBackground(new java.awt.Color(242, 253, 242));
         btnVolver.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -257,6 +301,7 @@ public class AgregarAnimalView extends javax.swing.JFrame {
             }
         });
 
+        btnGuardar.setBackground(new java.awt.Color(242, 253, 242));
         btnGuardar.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -347,28 +392,64 @@ public class AgregarAnimalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 203, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(242, 253, 242));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 638, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 358, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(521, 521, 521)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(521, 521, 521)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 269, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(26, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(129, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -399,7 +480,9 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorFijoActionPerformed
 
-    // Variables declaration - do not modify                     
+  
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbEspecie;
@@ -415,15 +498,10 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtValorFijo;
-
-    private void habilitarSetores() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
