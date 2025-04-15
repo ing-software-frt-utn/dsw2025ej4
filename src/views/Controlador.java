@@ -18,12 +18,21 @@ public class Controlador {
         return Persistencia.getSectores();
     }
     
+      public static ArrayList<Pais> getPaises(){
+        return Persistencia.getPaises();
+    }
+    
     public static ArrayList<AnimalViewModel> getAnimales(){
         ArrayList<AnimalViewModel> animales = new ArrayList<>();
         for(Mamifero animal : Persistencia.getAnimales()){
             animales.add(new AnimalViewModel(animal));
         }
         return animales;
+    }
+    
+  
+    public static void agregarAnimal(Mamifero animal){
+        Persistencia.agregarAnimal(animal);
     }
     
     public static ComidaViewModel  calcularComida(){
