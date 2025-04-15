@@ -10,6 +10,7 @@ import domain.Pais;
 import domain.Sector;
 import java.util.InvalidPropertiesFormatException;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 
@@ -20,9 +21,16 @@ public class AgregarAnimalesVentana extends javax.swing.JFrame {
         jSpinner1.setModel(new SpinnerNumberModel(0, 0, 100, 1));
         jSpinner2.setModel(new SpinnerNumberModel(0.0, 0.0, 5000.0, 0.1));
 
-        
+        // Bloquear edición manual del spinner de edad
+((JSpinner.DefaultEditor) jSpinner1.getEditor()).getTextField().setEditable(false);
+
+// Bloquear edición manual del spinner de peso
+((JSpinner.DefaultEditor) jSpinner2.getEditor()).getTextField().setEditable(false);
     }
 
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -80,6 +88,11 @@ public class AgregarAnimalesVentana extends javax.swing.JFrame {
         });
 
         jButton3.setText("Volver");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,7 +150,7 @@ public class AgregarAnimalesVentana extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -195,6 +208,13 @@ public class AgregarAnimalesVentana extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+         Menu a = new Menu();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
   
     public static void main(String args[]) {
