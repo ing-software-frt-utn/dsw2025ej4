@@ -1,4 +1,7 @@
 package domain;
+/**
+ * @author Martin
+ */
 
 public class Pais {
     private final String nombre;
