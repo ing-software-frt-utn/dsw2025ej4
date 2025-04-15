@@ -50,6 +50,14 @@ public class Sector {
     public Empleado getEmpleado() {
         return empleado;
     }
+    
+      public void reducirLimite() {
+    if (limite > 0) {
+        limite--;
+    } else {
+        throw new IllegalStateException("El sector ya alcanzó su capacidad máxima.");
+    } 
+}
     public TipoAlimentacion getTipoAlimentacion() {return tipoAlimentacion;}
 
     @Override
@@ -57,3 +65,4 @@ public class Sector {
         return String.format("Sector N°: %s [%s]", numero, tipoAlimentacion);
     }
 }
+

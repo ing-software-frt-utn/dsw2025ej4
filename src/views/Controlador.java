@@ -2,12 +2,16 @@ package views;
 
 import data.Persistencia;
 import domain.*;
+import views.ListarAnimalesView;
 
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
-
+import javax.swing.table.DefaultTableModel;
 public class Controlador {
+    
+    
+    
     public static TipoAlimentacion[] getTiposAlimentacion(){
         return  TipoAlimentacion.values();
     }
@@ -17,6 +21,9 @@ public class Controlador {
     public static ArrayList<Sector> getSectores(){
         return Persistencia.getSectores();
     }
+    public static ArrayList<Pais> getPaises(){
+        return Persistencia.getPaises();
+    }    
     
     public static ArrayList<AnimalViewModel> getAnimales(){
         ArrayList<AnimalViewModel> animales = new ArrayList<>();
@@ -25,10 +32,16 @@ public class Controlador {
         }
         return animales;
     }
+
+     public static void agregarAnimal(Mamifero mamifero){
+             
+             Persistencia.agregarAnimal(mamifero);
+     }
     
     public static ComidaViewModel  calcularComida(){
         double totalCarnivoros = Persistencia.getTotalComida(TipoAlimentacion.CARNIVORO);
         double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
     }
+
 }
