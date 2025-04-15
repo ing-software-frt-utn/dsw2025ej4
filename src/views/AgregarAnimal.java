@@ -517,13 +517,13 @@ public class AgregarAnimal extends javax.swing.JFrame {
         this.jLabel5 = jLabel5;
     }
 
-    public javax.swing.JTextField getjTextField1() {
+    /*public javax.swing.JTextField getjTextField1() {
         return jTextField1;
     }
 
     public void setjTextField1(javax.swing.JTextField jTextField1) {
         this.jTextField1 = jTextField1;
-    }
+    }*/
 
     /*public javax.swing.JTextField getjTextField2() {
         return SectorCampo;
