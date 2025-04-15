@@ -12,7 +12,8 @@ public class Program {
         Persistencia.inicializar();
         //ListarAnimalesView view = new ListarAnimalesView();
         //view.setVisible(true);
-        AgregarAnimalesVentana v = new AgregarAnimalesVentana();
-        v.setVisible(true);
+        Menu n = new Menu();
+        //AgregarAnimalesVentana v = new AgregarAnimalesVentana();
+        n.setVisible(true);
     }
 }

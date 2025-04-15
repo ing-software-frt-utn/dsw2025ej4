@@ -14,6 +14,7 @@ public class AnimalViewModel{
     private double peso;
     private double valorFijo;
     private double porcentaje;
+   
 
     public AnimalViewModel(Mamifero animal) {
         if(animal == null) return;
@@ -36,6 +37,8 @@ public class AnimalViewModel{
     public String getSector() {
         return sector;
     }
+    
+    
 
     public double getPeso() {
         return peso;

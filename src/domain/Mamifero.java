@@ -8,6 +8,7 @@ public abstract class Mamifero {
     protected Especie especie;
     protected Sector sector;
     protected TipoAlimentacion tipoAlimentacion;
+    private Pais pais;
 
 
     protected Mamifero(TipoAlimentacion tipoAlimentacion,
@@ -47,4 +48,6 @@ public abstract class Mamifero {
     public boolean TieneAlimentacion(TipoAlimentacion tipo){
         return tipoAlimentacion == tipo;
     }
+
+   
 }
