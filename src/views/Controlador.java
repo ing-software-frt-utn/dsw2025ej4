@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Controlador {
       
-    static Principal Inicio = new Principal();
+    static Menu Inicio = new Menu();
     static AgregarAnimales VistaA = new AgregarAnimales(Inicio,true);
     static ListarAnimalesView Lista = new ListarAnimalesView();
        
