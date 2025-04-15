@@ -32,6 +32,7 @@ public class Persistencia {
         animales.add(new Carnivoro(2,180,especies.get(2), sectores.get(3), paises.get(2)));
         animales.add(new Herbivoro(3, 1020,especies.get(1), sectores.get(0), 170, paises.get(4)));
         animales.add(new Herbivoro(8, 3800,especies.get(3), sectores.get(2), 320, paises.get(1)));
+        animales.add(new Herbivoro(5, 1600,especies.get(3), sectores.get(2), 300, paises.get(1)));
     }
     
     private static void inicializarPaises(){
