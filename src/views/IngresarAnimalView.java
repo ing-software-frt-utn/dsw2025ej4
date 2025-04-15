@@ -220,20 +220,15 @@ public class IngresarAnimalView extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEspeciesPropertyChange
 
     private void cmbEspeciesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEspeciesActionPerformed
-        System.out.println("se cambio el cmbEspecies");
         try {
 
             Especie especie = (Especie) cmbEspecies.getSelectedItem();
-            System.out.println(especie);
-            System.out.println(cmbEspecies.getSelectedIndex());
             this.llenarCmbSector(especie.getTipoAlimentacion());
             System.out.println(cmbEspecies.getSelectedIndex());
             if (cmbEspecies.getSelectedIndex() == -1) {
-                System.out.println("desabilitar sectores");
                 cmbSectores.setSelectedIndex(0);
                 cmbSectores.setEnabled(false);
             } else {
-                System.out.println("habilitar sectores");
 
                 cmbSectores.setEnabled(true);
             }
@@ -328,6 +323,7 @@ public class IngresarAnimalView extends javax.swing.JFrame {
         cmbEspecies.setSelectedIndex(-1);
         cmbPaises.setSelectedIndex(-1);
         cmbSectores.setSelectedIndex(-1);
+        txtValorFijo.setText("");
     }
 
     public boolean cargarAnimal() {
