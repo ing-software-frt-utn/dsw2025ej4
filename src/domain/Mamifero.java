@@ -8,7 +8,7 @@ public abstract class Mamifero {
     protected Especie especie;
     protected Sector sector;
     protected TipoAlimentacion tipoAlimentacion;
-
+    
 
     protected Mamifero(TipoAlimentacion tipoAlimentacion,
                        int edad, double peso, Especie especie, Sector sector) throws IllegalArgumentException, InvalidPropertiesFormatException {
@@ -20,6 +20,7 @@ public abstract class Mamifero {
         this.peso = peso;
         this.especie = especie;
         this.sector = sector;
+     
         sector.agregarAnimal(this);
     }
 
@@ -43,6 +44,7 @@ public abstract class Mamifero {
     public TipoAlimentacion getTipoAlimentacion(){
         return tipoAlimentacion;
     }
+    
     
     public boolean TieneAlimentacion(TipoAlimentacion tipo){
         return tipoAlimentacion == tipo;
