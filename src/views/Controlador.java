@@ -1,4 +1,13 @@
+package views;
 
+import data.Persistencia;
+import domain.*;
+import views.ListarAnimalesView;
+
+import java.util.ArrayList;
+import java.util.InvalidPropertiesFormatException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 public class Controlador {
     
     
