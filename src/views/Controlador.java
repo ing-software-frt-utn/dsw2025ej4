@@ -19,14 +19,14 @@ public class Controlador implements ActionListener {
 
     private data.Persistencia persistencia;
     private AgregarAnimal vistaAgregar;
-    private VistaInicio vistaMenuInicio;
+    private VistaMenu vistaMenuInicio;
     private ListarAnimalesView vistaAnimales;
     public void iniciar() {
 
         persistencia = new Persistencia();
 
         vistaAnimales = new ListarAnimalesView();
-        vistaAgregar = new VistaAgregar();
+        vistaAgregar = new AgregarAnimal();
         vistaAgregar.cargarComboPais(persistencia);
 
         vistaMenuInicio = new VistaMenuInicio();
