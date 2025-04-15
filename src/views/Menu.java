@@ -1,7 +1,7 @@
 package views;
 
-public class Principal extends javax.swing.JDialog {
-    public Principal() {
+public class Menu extends javax.swing.JDialog {
+    public Menu() {
         
         initComponents();
     }
@@ -96,7 +96,7 @@ public class Principal extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Principal dialog = new Principal();
+                Menu dialog = new Menu();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
