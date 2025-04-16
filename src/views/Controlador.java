@@ -31,4 +31,17 @@ public class Controlador {
         double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
     }
+      
+   
+  public static void agregarAnimalSinExcepcion() {
+    try {
+        Persistencia.agregarAnimal(); // este es el que lanza la excepción
+    } catch (InvalidPropertiesFormatException e) {
+        // Podés mostrar un mensaje o dejarlo vacío
+        System.err.println("Error al agregar el animal: " + e.getMessage());
+    }
 }
+
+        
+}
+
